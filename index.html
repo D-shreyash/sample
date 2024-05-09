@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div><input id="searchTab" type="text" /></div>
+    <button id="searchBtn">Submit</button>
+    <div id="textArea"></div>
+    <script>
+      const hotels = [
+        { id: "1", name: "kings", location: "belgaum", currency: "usd" },
+        { id: "2", name: "kings", location: "pune", currency: "rs" },
+      ];
+
+      let filter = [];
+
+      $(document).ready(() => {
+        $("#searchBtn").click((event) => {
+          event.preventDefault();
+          const key = $("#searchTab").val();
+
+          filter = hotels.filter((hotel) => {
+            return hotel.location.includes(key);
+          });
+
+          console.log(filter[0]);
+          document.getElementById(
+            "textArea"
+          ).innerHTML = `location ${filter[0].location}`;
+        });
+      });
+    </script>
+  </body>
+</html>
